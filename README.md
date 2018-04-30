@@ -51,3 +51,19 @@ origin:"gorouter" eventType:HttpStartStop timestamp:1487442048331215120 deployme
 origin:"gorouter" eventType:HttpStartStop timestamp:1487442048331680599 deployment:"cf" job:"router" index:"6bddeda2-ac99-4c94-b3f4-60fe37a6ea2f" ip:"10.193.70.24" httpStartStop:<startTimestamp:1487442048313392423 stopTimestamp:1487442048331671180 requestId:<low:670985736938183539 high:8151325518793386364 > peerType:Server method:GET uri:"http://api.run-05.haas-59.pez.pivotal.io/v2/apps/41abc841-cbc8-4cab-854d-640a7c8b6a5f" remoteAddress:"10.193.70.250:47372" userAgent:"go-cli 6.23.1+a70deb38f.2017-01-13 / darwin" statusCode:200 contentLength:1873 forwarded:"10.64.248.138" >
 origin:"gorouter" eventType:HttpStartStop timestamp:1487442053415493677 deployment:"cf" job:"router" index:"6bddeda2-ac99-4c94-b3f4-60fe37a6ea2f" ip:"10.193.70.24" httpStartStop:<startTimestamp:1487442041986333923 stopTimestamp:1487442053415450888 requestId:<low:6216517624099443007 high:8021246184761303400 > peerType:Server method:GET uri:"http://doppler.run-05.haas-59.pez.pivotal.io:443/apps/41abc841-cbc8-4cab-854d-640a7c8b6a5f/stream" remoteAddress:"10.193.70.250:47332" userAgent:"Go-http-client/1.1" statusCode:200 contentLength:0 forwarded:"10.64.248.138" forwarded:"10.193.70.250" >
 ```
+
+## Conntecting directly to the loggregator component
+
+if you wnat to bypass a load blanacer and go directly to loggregrate via the unecrypted path then try this
+
+streaming logs
+
+```
+./dop -url ws://10.193.67.65:8081/apps/<APP GUID>/stream
+```
+
+connect to firehose
+
+```
+./dop -url ws://10.193.67.65:8081/firehose/test123
+```
