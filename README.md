@@ -12,6 +12,13 @@ Usage of dop:
     	Web socket address example: wss://doppler.system.domain:443/apps/41abc841-cbc8-4cab-854d-640a7c8b6a5f/stream
 ```
 
+**Note** you can copy the access token manually from your local `~/.cf/config.json` to the host you want to run dop on
+
+```
+~:> cat ~/.cf/config.json  | egrep AccessToken
+  "AccessToken": "bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Imtle....",
+```
+
 # Examples 
 
 ## Listing for events of a specific app 
@@ -55,6 +62,8 @@ origin:"gorouter" eventType:HttpStartStop timestamp:1487442053415493677 deployme
 ## Conntecting directly to the loggregator component
 
 if you wnat to bypass a load blanacer and go directly to loggregrate via the unecrypted path then try this
+
+**Note** `ws` for unecrypted and `wss` for TLS encryption
 
 streaming logs
 
