@@ -2,6 +2,21 @@
 
 A basic doppler nozzle that can listen for events on the cf doppler endpoint 
 
+# installation
+
+make sure you have $GOPATH environment vairalbe set.  This will be the path used to install dop
+
+```
+export GOPATH=/my/path
+export PATH=$GOPATH/bin/$PATH
+```
+
+This command will will insall dop under `$GOPATH/bin/dop`
+
+```
+go get github.com/randomtask1155/dop
+```
+
 # Usage 
 
 ```
