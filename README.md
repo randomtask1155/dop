@@ -1,17 +1,17 @@
 # Purpose
 
-A basic doppler nozzle that can listen for events on the cf doppler endpoint 
+A basic doppler nozzle that can listen for events on the cf doppler endpoint. 
 
-# installation
+# Installation
 
-make sure you have $GOPATH environment vairalbe set.  This will be the path used to install dop
+Make sure you have the $GOPATH environment variable set.  This will be the path used to install dop:
 
 ```
 export GOPATH=/my/path
 export PATH=$GOPATH/bin/$PATH
 ```
 
-This command will will insall dop under `$GOPATH/bin/dop`
+This command will install dop under `$GOPATH/bin/dop`
 
 ```
 go get github.com/randomtask1155/dop
@@ -22,12 +22,12 @@ go get github.com/randomtask1155/dop
 ```
 Usage of dop:
   -token string
-    	Provide an access token used to authenticate with doppler endpoint. Defaults to ~/.cf/config.json
+    	Provide an access token used to authenticate with the doppler endpoint. Defaults to ~/.cf/config.json
   -url string
     	Web socket address example: wss://doppler.system.domain:443/apps/41abc841-cbc8-4cab-854d-640a7c8b6a5f/stream
 ```
 
-**Note** you can copy the access token manually from your local `~/.cf/config.json` to the host you want to run dop on
+**Note** You can copy the access token manually from your local `~/.cf/config.json` to the host you want to run dop on
 
 ```
 ~:> cat ~/.cf/config.json  | egrep AccessToken
@@ -36,7 +36,7 @@ Usage of dop:
 
 # Examples 
 
-## Listing for events of a specific app 
+## Listening for events of a specific app 
 
 ```
 $ dop -url wss://doppler.system.domain:443/apps/41abc841-cbc8-4cab-854d-640a7c8b6a5f/stream
@@ -54,7 +54,7 @@ Sending input
 origin:"rep" eventType:LogMessage timestamp:1487442491621249300 deployment:"cf" job:"ADFS" index:"0" ip:"10.152.9.20" logMessage:<message:"Failed to destroy container" message_type:ERR timestamp:1487442491621249300 app_id:"41abc841-cbc8-4cab-854d-640a7c8b6a5f" source_type:"STG" source_instance:"0" >
 ```
 
-## Listing on firehose and greping for application guid
+## Listening on the firehose and greping for the application guid
 
 ```
 $ dop -url wss://doppler.system.domain:443/firehose/test123 | egrep 41abc841-cbc8-4cab-854d-640a7c8b6a5f
@@ -74,19 +74,19 @@ origin:"gorouter" eventType:HttpStartStop timestamp:1487442048331680599 deployme
 origin:"gorouter" eventType:HttpStartStop timestamp:1487442053415493677 deployment:"cf" job:"router" index:"6bddeda2-ac99-4c94-b3f4-60fe37a6ea2f" ip:"10.193.70.24" httpStartStop:<startTimestamp:1487442041986333923 stopTimestamp:1487442053415450888 requestId:<low:6216517624099443007 high:8021246184761303400 > peerType:Server method:GET uri:"http://doppler.run-05.haas-59.pez.pivotal.io:443/apps/41abc841-cbc8-4cab-854d-640a7c8b6a5f/stream" remoteAddress:"10.193.70.250:47332" userAgent:"Go-http-client/1.1" statusCode:200 contentLength:0 forwarded:"10.64.248.138" forwarded:"10.193.70.250" >
 ```
 
-## Conntecting directly to the loggregator component
+## Connecting directly to the loggregator component
 
-if you wnat to bypass a load blanacer and go directly to loggregrate via the unecrypted path then try this
+If you want to bypass a load balancer and go directly to loggregrator via the unencrypted path:
 
-**Note** `ws` for unecrypted and `wss` for TLS encryption
+**Note** `ws` for unencrypted and `wss` for TLS encryption
 
-streaming logs
+Streaming logs
 
 ```
 ./dop -url ws://10.193.67.65:8081/apps/<APP GUID>/stream
 ```
 
-connect to firehose
+Connect to firehose
 
 ```
 ./dop -url ws://10.193.67.65:8081/firehose/test123
